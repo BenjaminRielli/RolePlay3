@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Dwarf: Heroe
+    public class Orco: Enemy
     {
         private int health = 100;
         private int victoryPoint = 0;
@@ -10,7 +10,7 @@ namespace RoleplayGame
 
         public string Name { get; set; }
 
-        public Dwarf(string name): base(name)
+        public Orco(string name): base(name)
         {
             this.AddItem(new Axe());
             this.AddItem(new Helmet());
@@ -29,7 +29,7 @@ namespace RoleplayGame
                     }
                 }
                 return value;
-            }
+            }   
         }
 
         public int DefenseValue
