@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Archer: ICharacter
+    public class Archer: Character
     {
-        private int health = 100;
-
+        private int health = 100; 
+        private int victoryPoint = 0;
         private List<IItem> items = new List<IItem>();
 
-        public Archer(string name)
-        {
-            this.Name = name;
-            
+        public Archer(string name): base(name)
+        {   
             this.AddItem(new Bow());
             this.AddItem(new Helmet());
         }
@@ -60,8 +58,19 @@ namespace RoleplayGame
                 this.health = value < 0 ? 0 : value;
             }
         }
+         public int VictoryPoint { 
+            get
+            {
+                return this.victoryPoint;
+            }
+            set 
+            {
+                this.victoryPoint = value < 0 ? 0 : value;
+            }
+        }
 
-        public void ReceiveAttack(int power)
+
+        public override void ReceiveAttack(int power)
         {
             if (this.DefenseValue < power)
             {
@@ -69,17 +78,17 @@ namespace RoleplayGame
             }
         }
 
-        public void Cure()
+        public override void Cure()
         {
             this.Health = 100;
         }
 
-        public void AddItem(IItem item)
+        public override void AddItem(IItem item)
         {
             this.items.Add(item);
         }
 
-        public void RemoveItem(IItem item)
+        public override void RemoveItem(IItem item)
         {
             this.items.Remove(item);
         }

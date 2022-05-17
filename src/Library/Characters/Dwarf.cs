@@ -1,21 +1,20 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Dwarf: ICharacter
+    public class Dwarf: Character
     {
         private int health = 100;
+        private int victoryPoint = 0;
 
         private List<IItem> items = new List<IItem>();
 
-        public Dwarf(string name)
+        public string Name { get; set; }
+
+        public Dwarf(string name): base(name)
         {
-            this.Name = name;
-            
             this.AddItem(new Axe());
             this.AddItem(new Helmet());
         }
-
-        public string Name { get; set; }
         
         public int AttackValue
         {
@@ -61,7 +60,7 @@ namespace RoleplayGame
             }
         }
 
-        public void ReceiveAttack(int power)
+        public override void ReceiveAttack(int power)
         {
             if (this.DefenseValue < power)
             {
@@ -69,17 +68,28 @@ namespace RoleplayGame
             }
         }
 
-        public void Cure()
+        public int VictoryPoint { 
+            get
+            {
+                return this.victoryPoint;
+            }
+            set 
+            {
+                this.victoryPoint = value < 0 ? 0 : value;
+            }
+        }
+
+        public override void Cure()
         {
             this.Health = 100;
         }
 
-        public void AddItem(IItem item)
+        public override void AddItem(IItem item)
         {
             this.items.Add(item);
         }
 
-        public void RemoveItem(IItem item)
+        public override void RemoveItem(IItem item)
         {
             this.items.Remove(item);
         }
