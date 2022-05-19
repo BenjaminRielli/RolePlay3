@@ -9,11 +9,11 @@ namespace RoleplayGame
 
         string Name { get; set; }
 
-        int Health { get; }
+        public int Health { get; }
 
-        int AttackValue { get; }
+        public int AttackValue { get; }
 
-        int DefenseValue { get; }
+        public int DefenseValue { get; }
 
         public abstract void AddItem(IItem item);
 
